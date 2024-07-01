@@ -2,6 +2,6 @@ torch>=1.6.0
 torchvision>=0.7.0
 
 # Changing version of opencv library to support python > 3.11
-opencv-python==4.10.0
+opencv-python==4.10.0.84
 scipy>=1.3.2
 gdown>=3.10.1
