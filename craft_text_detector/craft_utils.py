@@ -410,10 +410,25 @@ def getDetBoxes(textmap, linkmap, text_threshold, link_threshold, low_text, poly
     return boxes, polys
 
 
+# def adjustResultCoordinates(polys, ratio_w, ratio_h, ratio_net=2):
+#     print(polys)
+#     print(type(polys))
+
+#     if len(polys) > 0:
+#         polys = np.array(polys)
+#         for k in range(len(polys)):
+#             if polys[k] is not None:
+#                 polys[k] *= (ratio_w * ratio_net, ratio_h * ratio_net)
+#     return polys
+
+
+# updating adjustResultCoordinates function
 def adjustResultCoordinates(polys, ratio_w, ratio_h, ratio_net=2):
-    if len(polys) > 0:
-        polys = np.array(polys)
-        for k in range(len(polys)):
-            if polys[k] is not None:
-                polys[k] *= (ratio_w * ratio_net, ratio_h * ratio_net)
-    return polys
+    adjusted_polys = []
+
+    for poly in polys:
+        if poly is not None:
+            adjusted_poly = poly * np.array([ratio_w * ratio_net, ratio_h * ratio_net])
+            adjusted_polys.append(adjusted_poly)
+
+    return adjusted_polys
