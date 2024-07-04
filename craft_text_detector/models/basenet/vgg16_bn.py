@@ -18,12 +18,17 @@ def init_weights(modules):
             m.weight.data.normal_(0, 0.01)
             m.bias.data.zero_()
 
-class Vgg16BN(torch.nn.Module):
-    def __init__(self, weights='imagenet', freeze=True):
-        super(Vgg16BN, self).__init__()
+class vgg16_bn(torch.nn.Module):
+    def __init__(self, pretrained=True, weights='imagenet', freeze=True):
+        super(vgg16_bn, self).__init__()
         
         # Load pretrained model
-        vgg_pretrained_features = models.vgg16_bn(weights=weights).features
+        if pretrained:
+            vgg_pretrained_features = models.vgg16_bn(weights=weights).features
+        else:
+            vgg_pretrained_features = models.vgg16_bn(weights=weights).features
+
+        # vgg_pretrained_features = models.vgg16_bn(weights=weights).features
 
         # Define slices for different layers
         self.slice1 = torch.nn.Sequential()
